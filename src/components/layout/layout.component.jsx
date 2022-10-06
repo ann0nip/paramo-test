@@ -8,7 +8,7 @@ const Layout = () => {
     return (
         <Fragment>
             <CssBaseline />
-            <Container maxWidth="xl">
+            <Container maxWidth="xl" sx={{ backgroundColor: '#F5F5F5' }}>
                 <Header />
                 <Outlet />
             </Container>

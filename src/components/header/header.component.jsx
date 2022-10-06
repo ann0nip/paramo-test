@@ -9,7 +9,6 @@ const tool_bar_styles = {
 };
 
 const title_styles = {
-    mr: 2,
     fontFamily: 'monospace',
     fontWeight: 700,
     letterSpacing: '.3rem',
