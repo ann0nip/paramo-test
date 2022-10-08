@@ -1,7 +1,8 @@
 import { Button, styled } from '@mui/material';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { useRef } from 'react';
+import { useContext, useRef } from 'react';
+import { AppContext } from '../../contexts/app.context';
 
 const CustomTextField = styled(TextField)(({ theme }) => ({
     '& .MuiOutlinedInput-root': {
@@ -34,9 +35,11 @@ const box_styles = {
 
 const SearchBar = () => {
     const inputRef = useRef(null);
+    const { setQuery, setPage } = useContext(AppContext);
 
     const handleSearch = () => {
-        console.log(inputRef.current.value);
+        if (!inputRef.current.value) setPage(1);
+        setQuery(inputRef.current.value);
     };
 
     return (

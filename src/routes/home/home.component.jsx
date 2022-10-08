@@ -1,4 +1,4 @@
-import { Container, Grid, styled } from '@mui/material';
+import { Button, Container, Grid, styled } from '@mui/material';
 import { useContext } from 'react';
 import PokemonCard from '../../components/pokemon-card/pokemon-card.component';
 import SearchBar from '../../components/search-bar/search-bar.component';
@@ -49,7 +49,9 @@ const SearchSection = () => (
 );
 
 const Home = () => {
-    const { pokemons } = useContext(AppContext);
+    const { pokemons, page, setPage } = useContext(AppContext);
+
+    const handleLoadMore = () => setPage(page + 1);
 
     return (
         <Container maxWidth="xl" sx={{ backgroundColor: 'primary.light' }}>
@@ -62,6 +64,22 @@ const Home = () => {
                         <PokemonCard pokemon={pokemon} />
                     </Grid>
                 ))}
+            </Grid>
+            <Grid container>
+                <Grid
+                    item
+                    xs={12}
+                    sx={{ display: 'flex', justifyContent: 'center' }}
+                >
+                    <Button
+                        onClick={handleLoadMore}
+                        variant="contained"
+                        color={'secondary'}
+                        sx={{ margin: '25px', padding: '15px' }}
+                    >
+                        Load more Pokémon
+                    </Button>
+                </Grid>
             </Grid>
         </Container>
     );

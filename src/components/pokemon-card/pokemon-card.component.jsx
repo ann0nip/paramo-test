@@ -155,8 +155,9 @@ export default function PokemonCard({ pokemon }) {
                 </CardContent>
             </CardActionArea>
             <CardActions>
-                {types.map(({ type }) => (
+                {types.map(({ slot, type }) => (
                     <TypeChip
+                        key={slot}
                         sx={{
                             textTransform: 'uppercase',
                             fontWeight: 'bold',
