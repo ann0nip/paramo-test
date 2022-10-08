@@ -1,5 +1,6 @@
 import { Button, Container, Grid, styled } from '@mui/material';
 import { useContext } from 'react';
+import FilterSection from '../../components/filter-section/filter-section.component';
 import PokemonCard from '../../components/pokemon-card/pokemon-card.component';
 import SearchBar from '../../components/search-bar/search-bar.component';
 import { AppContext } from '../../contexts/app.context';
@@ -48,6 +49,20 @@ const SearchSection = () => (
     </Grid>
 );
 
+const LoadMoreButton = ({ handleLoadMore }) => (
+    <Grid container>
+        <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>
+            <Button
+                onClick={handleLoadMore}
+                variant="contained"
+                color={'secondary'}
+                sx={{ margin: '25px', padding: '15px' }}
+            >
+                Load more Pokémon
+            </Button>
+        </Grid>
+    </Grid>
+);
 const Home = () => {
     const { pokemons, page, setPage } = useContext(AppContext);
 
@@ -56,7 +71,8 @@ const Home = () => {
     return (
         <Container maxWidth="xl" sx={{ backgroundColor: 'primary.light' }}>
             <SearchSection />
-            <section>Filters</section>
+            <hr />
+            <FilterSection />
             <hr />
             <Grid container spacing={2}>
                 {pokemons.map((pokemon) => (
@@ -65,22 +81,7 @@ const Home = () => {
                     </Grid>
                 ))}
             </Grid>
-            <Grid container>
-                <Grid
-                    item
-                    xs={12}
-                    sx={{ display: 'flex', justifyContent: 'center' }}
-                >
-                    <Button
-                        onClick={handleLoadMore}
-                        variant="contained"
-                        color={'secondary'}
-                        sx={{ margin: '25px', padding: '15px' }}
-                    >
-                        Load more Pokémon
-                    </Button>
-                </Grid>
-            </Grid>
+            <LoadMoreButton handleLoadMore={handleLoadMore} />
         </Container>
     );
 };

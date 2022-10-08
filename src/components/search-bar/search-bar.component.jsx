@@ -35,10 +35,9 @@ const box_styles = {
 
 const SearchBar = () => {
     const inputRef = useRef(null);
-    const { setQuery, setPage } = useContext(AppContext);
+    const { setQuery } = useContext(AppContext);
 
     const handleSearch = () => {
-        if (!inputRef.current.value) setPage(1);
         setQuery(inputRef.current.value);
     };
 

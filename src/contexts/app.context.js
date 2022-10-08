@@ -2,12 +2,13 @@ import { createContext, useEffect, useReducer, useState } from 'react';
 import { createAction } from '../utils/create-action.utils';
 import trainersFile from '../trainers.json';
 import { getPokemonData } from '../services/pokemon.services';
+const PAGE_DEFAULT = 1;
 
 export const AppContext = createContext({
     favouritesList: [],
     pokemons: [],
     trainers: null,
-    page: 1,
+    page: PAGE_DEFAULT,
     query: '',
 });
 
@@ -24,7 +25,7 @@ const INITIAL_STATE = {
     favouritesList: [],
     pokemons: [],
     trainers: null,
-    page: 1,
+    page: PAGE_DEFAULT,
     query: '',
 };
 
@@ -90,9 +91,13 @@ export const AppProvider = ({ children }) => {
     }, []);
 
     useEffect(() => {
+        setPage(PAGE_DEFAULT);
+    }, [query]);
+
+    useEffect(() => {
         getPokemon();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [page, query]);
+    }, [page]);
 
     const value = {
         addToFavourite,
