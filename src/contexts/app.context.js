@@ -91,6 +91,7 @@ export const AppProvider = ({ children }) => {
 
     useEffect(() => {
         getPokemon();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [page, query]);
 
     const value = {
