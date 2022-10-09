@@ -38,7 +38,7 @@ const SearchBar = () => {
     const { setQuery } = useContext(AppContext);
 
     const handleSearch = () => {
-        setQuery(inputRef.current.value);
+        setQuery(inputRef.current.value.toLowerCase());
     };
 
     return (

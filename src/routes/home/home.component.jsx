@@ -1,5 +1,5 @@
+import { useContext, useEffect } from 'react';
 import { Button, Container, Grid, styled } from '@mui/material';
-import { useContext } from 'react';
 import FilterSection from '../../components/filter-section/filter-section.component';
 import PokemonCard from '../../components/pokemon-card/pokemon-card.component';
 import SearchBar from '../../components/search-bar/search-bar.component';
@@ -64,7 +64,12 @@ const LoadMoreButton = ({ handleLoadMore }) => (
     </Grid>
 );
 const Home = () => {
-    const { pokemons, page, setPage } = useContext(AppContext);
+    const { pokemons, page, setPage, getPokemon, orderBy, query } =
+        useContext(AppContext);
+
+    useEffect(() => {
+        getPokemon();
+    }, [page, query, orderBy]);
 
     const handleLoadMore = () => setPage(page + 1);
 
@@ -72,7 +77,7 @@ const Home = () => {
         <Container maxWidth="xl" sx={{ backgroundColor: 'primary.light' }}>
             <SearchSection />
             <hr />
-            <FilterSection />
+            <FilterSection orderBy={orderBy} />
             <hr />
             <Grid container spacing={2}>
                 {pokemons.map((pokemon) => (

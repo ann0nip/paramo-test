@@ -1,41 +1,48 @@
+import { useNavigate } from 'react-router-dom';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { useState } from 'react';
 import { Button, Grid } from '@mui/material';
 
-export default function FilterSection() {
-    const [filterActive, setFilterActive] = useState(0);
+export default function FilterSection({ orderBy = 'numAsc' }) {
+    const navigate = useNavigate();
+
     const filtersOptions = [
         {
             id: 0,
             label: 'Lowest Number',
+            value: 'numAsc',
         },
         {
             id: 1,
             label: 'Highest Number',
+            value: 'numDesc',
         },
         {
             id: 2,
             label: 'A-Z',
+            value: 'A-Z',
         },
         {
             id: 3,
             label: 'Z-A',
+            value: 'Z-A',
         },
     ];
 
-    const handleActiveButton = (id) => setFilterActive(id);
+    const handleActiveButton = (id) => {
+        navigate(`/?orderBy=${filtersOptions[id].value}`);
+    };
 
     return (
         <div>
             <Accordion>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
+                    aria-controls="filters-options-content"
+                    id="filters-options-header"
                 >
                     <Typography>Filters</Typography>
                 </AccordionSummary>
@@ -60,12 +67,12 @@ export default function FilterSection() {
                                     sx={{
                                         boxShadow: 'none',
                                         color:
-                                            filterActive === filter.id
+                                            orderBy === filter.value
                                                 ? '#FFF'
                                                 : '#E3350D',
                                         border: '1px solid #E3350D',
                                         backgroundColor:
-                                            filterActive === filter.id
+                                            orderBy === filter.value
                                                 ? '#E3350D'
                                                 : '#FFF',
                                         '&:hover': {

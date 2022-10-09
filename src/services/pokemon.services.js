@@ -6,24 +6,25 @@ export const getPokemonData = async ({
     URL = DEFAULT_URL,
     limit,
     query,
-    sort = 'numAsc',
+    orderBy = 'numAsc',
     page,
 }) => {
     const httpClient = new HttpClient();
     try {
         console.time('poke');
         let filteredResults;
+        //TODO: Add caching
         const { data } = await httpClient.get(URL + limit);
 
-        if (sort === 'numDesc') {
+        if (orderBy === 'numDesc') {
             data.results.reverse();
         }
 
-        if (sort === 'A-Z') {
+        if (orderBy === 'A-Z') {
             data.results.sort((a, b) => a.name.localeCompare(b.name));
         }
 
-        if (sort === 'Z-A') {
+        if (orderBy === 'Z-A') {
             data.results.sort((a, b) => b.name.localeCompare(a.name));
         }
 
