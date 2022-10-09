@@ -104,12 +104,6 @@ export const AppProvider = ({ children }) => {
         setTrainers(trainersFile);
     }, []);
 
-    // useEffect(() => {
-    //     setPage(PAGE_DEFAULT);
-    //     getPokemon();
-    //     // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, [page, query]);
-
     useEffect(() => {
         const sortBy = searchParams.get('orderBy');
         setOrderBy(sortBy);

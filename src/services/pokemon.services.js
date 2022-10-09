@@ -6,7 +6,7 @@ export const getPokemonData = async ({
     URL = DEFAULT_URL,
     limit,
     query,
-    orderBy = 'numAsc',
+    orderBy,
     page,
 }) => {
     const httpClient = new HttpClient();

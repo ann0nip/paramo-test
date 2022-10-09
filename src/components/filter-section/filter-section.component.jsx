@@ -6,31 +6,31 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Button, Grid } from '@mui/material';
 
+const filtersOptions = [
+    {
+        id: 0,
+        label: 'Lowest Number',
+        value: 'numAsc',
+    },
+    {
+        id: 1,
+        label: 'Highest Number',
+        value: 'numDesc',
+    },
+    {
+        id: 2,
+        label: 'A-Z',
+        value: 'A-Z',
+    },
+    {
+        id: 3,
+        label: 'Z-A',
+        value: 'Z-A',
+    },
+];
+
 export default function FilterSection({ orderBy = 'numAsc' }) {
     const navigate = useNavigate();
-
-    const filtersOptions = [
-        {
-            id: 0,
-            label: 'Lowest Number',
-            value: 'numAsc',
-        },
-        {
-            id: 1,
-            label: 'Highest Number',
-            value: 'numDesc',
-        },
-        {
-            id: 2,
-            label: 'A-Z',
-            value: 'A-Z',
-        },
-        {
-            id: 3,
-            label: 'Z-A',
-            value: 'Z-A',
-        },
-    ];
 
     const handleActiveButton = (id) => {
         navigate(`/?orderBy=${filtersOptions[id].value}`);
