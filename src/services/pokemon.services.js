@@ -47,15 +47,12 @@ export const getPokemonData = async ({
 
         const pokemons = await Promise.all(
             paginatePokemonData.map(async (pokemon) => {
-                const pokemonResponse = await fetch(pokemon.url);
-                const pokemonData = await pokemonResponse.json();
-
+                const { data } = await httpClient.get(pokemon.url);
                 return {
-                    id: pokemonData.id,
-                    name: pokemonData.name,
-                    image: pokemonData.sprites.other['official-artwork']
-                        .front_default,
-                    types: pokemonData.types,
+                    id: data.id,
+                    name: data.name,
+                    image: data.sprites.other['official-artwork'].front_default,
+                    types: data.types,
                 };
             })
         );
