@@ -4,6 +4,8 @@ import FilterSection from '../../components/filter-section/filter-section.compon
 import PokemonCard from '../../components/pokemon-card/pokemon-card.component';
 import SearchBar from '../../components/search-bar/search-bar.component';
 import { AppContext } from '../../contexts/app.context';
+import { useSelector } from 'react-redux';
+import { selectPokemons } from '../../store/pokemon/pokemon.selector';
 
 const SpanInfoText = styled('span')(({ theme }) => ({
     ...theme.typography.button,
@@ -64,29 +66,31 @@ const LoadMoreButton = ({ handleLoadMore }) => (
     </Grid>
 );
 const Home = () => {
-    const { pokemons, page, setPage, getPokemon, orderBy, query } =
-        useContext(AppContext);
+    // const { pokemons, page, setPage, getPokemon, orderBy, query } =
+    //     useContext(AppContext);
 
-    useEffect(() => {
-        getPokemon();
-    }, [page, query, orderBy]);
+    // useEffect(() => {
+    //     getPokemon();
+    // }, [page, query, orderBy]);
 
-    const handleLoadMore = () => setPage(page + 1);
-
+    // const handleLoadMore = () => setPage(page + 1);
+    const pokemons = useSelector(selectPokemons);
+    console.log(pokemons);
     return (
         <Container maxWidth="xl" sx={{ backgroundColor: 'primary.light' }}>
             <SearchSection />
             <hr />
-            <FilterSection orderBy={orderBy} />
+            {/* <FilterSection orderBy={orderBy} /> */}
             <hr />
             <Grid container spacing={2}>
-                {pokemons.map((pokemon) => (
-                    <Grid key={pokemon.id} item xs={12} md={3}>
-                        <PokemonCard pokemon={pokemon} />
-                    </Grid>
-                ))}
+                {pokemons.length &&
+                    pokemons.map((pokemon) => (
+                        <Grid key={pokemon.id} item xs={12} md={3}>
+                            <PokemonCard pokemon={pokemon} />
+                        </Grid>
+                    ))}
             </Grid>
-            <LoadMoreButton handleLoadMore={handleLoadMore} />
+            {/* <LoadMoreButton handleLoadMore={handleLoadMore} /> */}
         </Container>
     );
 };
