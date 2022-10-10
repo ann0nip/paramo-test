@@ -1,8 +1,9 @@
 import { Button, styled } from '@mui/material';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { useContext, useRef } from 'react';
-import { AppContext } from '../../contexts/app.context';
+import { useRef } from 'react';
+import { useDispatch } from 'react-redux';
+import { setSearchQuery } from '../../store/app/app.action';
 
 const CustomTextField = styled(TextField)(({ theme }) => ({
     '& .MuiOutlinedInput-root': {
@@ -35,10 +36,11 @@ const box_styles = {
 
 const SearchBar = () => {
     const inputRef = useRef(null);
-    const { setQuery } = useContext(AppContext);
+    const dispatch = useDispatch();
 
     const handleSearch = () => {
-        setQuery(inputRef.current.value.toLowerCase());
+        const currentValue = inputRef.current.value.toLowerCase();
+        dispatch(setSearchQuery(currentValue));
     };
 
     return (

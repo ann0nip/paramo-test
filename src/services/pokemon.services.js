@@ -15,9 +15,8 @@ export const getPokemonData = async ({
 } = {}) => {
     const httpClient = new HttpClient();
     try {
-        console.time('poke');
         let filteredResults;
-        //TODO: Add caching
+
         const { data } = await httpClient.get(`${URL}?limit=${limit}`);
 
         if (orderBy === 'numDesc') {
@@ -57,7 +56,6 @@ export const getPokemonData = async ({
             })
         );
 
-        console.timeEnd('poke');
         return {
             ...data,
             results: pokemons,
