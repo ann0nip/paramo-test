@@ -19,18 +19,6 @@ export const getPokemonData = async ({
 
         const { data } = await httpClient.get(`${URL}?limit=${limit}`);
 
-        if (orderBy === 'numDesc') {
-            data.results.reverse();
-        }
-
-        if (orderBy === 'A-Z') {
-            data.results.sort((a, b) => a.name.localeCompare(b.name));
-        }
-
-        if (orderBy === 'Z-A') {
-            data.results.sort((a, b) => b.name.localeCompare(a.name));
-        }
-
         if (query) {
             filteredResults = data.results.filter((p) =>
                 p.name.includes(query)
@@ -39,11 +27,28 @@ export const getPokemonData = async ({
             filteredResults = [...data.results];
         }
 
+        if (orderBy === 'numDesc') {
+            filteredResults = filteredResults.reverse();
+        }
+
+        if (orderBy === 'A-Z') {
+            filteredResults = filteredResults.sort((a, b) =>
+                a.name.localeCompare(b.name)
+            );
+        }
+
+        if (orderBy === 'Z-A') {
+            filteredResults = filteredResults.sort((a, b) =>
+                b.name.localeCompare(a.name)
+            );
+        }
+
         const paginatePokemonData = filteredResults.slice(
             0,
             page * POKEMON_PER_PAGE
         );
 
+        console.log(paginatePokemonData);
         const pokemons = await Promise.all(
             paginatePokemonData.map(async (pokemon) => {
                 const { data } = await httpClient.get(pokemon.url);

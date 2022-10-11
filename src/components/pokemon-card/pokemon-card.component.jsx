@@ -130,7 +130,15 @@ export default function PokemonCard({ pokemon }) {
             <CardActionArea>
                 <Typography
                     variant="h6"
-                    sx={{ position: 'absolute', padding: '10px', right: '0' }}
+                    sx={{
+                        position: 'absolute',
+                        margin: '8px',
+                        paddingX: '2px',
+                        right: '0',
+                        backgroundColor: 'secondary.dark',
+                        color: '#FFF',
+                        borderRadius: '5px',
+                    }}
                 >
                     {`#${id}`}
                 </Typography>
@@ -152,6 +160,7 @@ export default function PokemonCard({ pokemon }) {
                 <CardContent>
                     <Typography
                         sx={{ textTransform: 'capitalize' }}
+                        noWrap
                         variant="h5"
                         component="div"
                     >

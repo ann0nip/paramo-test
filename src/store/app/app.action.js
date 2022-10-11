@@ -6,3 +6,6 @@ export const incrementPage = () =>
 
 export const setSearchQuery = (query) =>
     createAction(APP_ACTION_TYPES.SET_SEARCH_QUERY, query);
+
+export const setOrderBy = (orderBy) =>
+    createAction(APP_ACTION_TYPES.SET_ORDER_BY, orderBy);
