@@ -1,7 +1,4 @@
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
+import { AppBar, Container, Toolbar, Typography } from '@mui/material';
 
 const tool_bar_styles = {
     display: 'flex',

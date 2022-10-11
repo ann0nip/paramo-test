@@ -1,9 +1,14 @@
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { CardActionArea, CardActions, Chip, styled } from '@mui/material';
 import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
+import {
+    Card,
+    CardActionArea,
+    CardActions,
+    CardContent,
+    CardMedia,
+    Chip,
+    styled,
+    Typography,
+} from '@mui/material';
 
 const TypeChip = styled(Chip)(({ label }) => {
     switch (label) {
@@ -130,7 +135,15 @@ export default function PokemonCard({ pokemon }) {
             <CardActionArea>
                 <Typography
                     variant="h6"
-                    sx={{ position: 'absolute', padding: '10px', right: '0' }}
+                    sx={{
+                        position: 'absolute',
+                        margin: '8px',
+                        paddingX: '2px',
+                        right: '0',
+                        backgroundColor: 'secondary.dark',
+                        color: '#FFF',
+                        borderRadius: '5px',
+                    }}
                 >
                     {`#${id}`}
                 </Typography>
@@ -152,6 +165,7 @@ export default function PokemonCard({ pokemon }) {
                 <CardContent>
                     <Typography
                         sx={{ textTransform: 'capitalize' }}
+                        noWrap
                         variant="h5"
                         component="div"
                     >

@@ -4,8 +4,9 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
-import { AppProvider } from './contexts/app.context';
+import { Provider } from 'react-redux';
 import { createTheme, ThemeProvider } from '@mui/material';
+import { store } from './store/store';
 
 const theme = createTheme({
     palette: {
@@ -24,11 +25,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
         <BrowserRouter>
-            <AppProvider>
+            <Provider store={store}>
                 <ThemeProvider theme={theme}>
                     <App />
                 </ThemeProvider>
-            </AppProvider>
+            </Provider>
         </BrowserRouter>
     </React.StrictMode>
 );

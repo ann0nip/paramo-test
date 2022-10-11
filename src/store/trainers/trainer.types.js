@@ -1,0 +1,3 @@
+export const TRAINERS_ACTION_TYPES = {
+    SET_TRAINERS: 'SET_TRAINERS',
+};
