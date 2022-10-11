@@ -1,6 +1,4 @@
-import { Button, styled } from '@mui/material';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
+import { Box, Button, styled, TextField } from '@mui/material';
 import { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { setSearchQuery } from '../../store/app/app.action';

@@ -48,7 +48,6 @@ export const getPokemonData = async ({
             page * POKEMON_PER_PAGE
         );
 
-        console.log(paginatePokemonData);
         const pokemons = await Promise.all(
             paginatePokemonData.map(async (pokemon) => {
                 const { data } = await httpClient.get(pokemon.url);

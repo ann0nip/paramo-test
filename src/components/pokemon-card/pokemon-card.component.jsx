@@ -1,9 +1,14 @@
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { CardActionArea, CardActions, Chip, styled } from '@mui/material';
 import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
+import {
+    Card,
+    CardActionArea,
+    CardActions,
+    CardContent,
+    CardMedia,
+    Chip,
+    styled,
+    Typography,
+} from '@mui/material';
 
 const TypeChip = styled(Chip)(({ label }) => {
     switch (label) {

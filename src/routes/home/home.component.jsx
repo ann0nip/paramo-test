@@ -1,16 +1,16 @@
-import { useEffect } from 'react';
 import { Container, Grid } from '@mui/material';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
 import FilterSection from '../../components/filter-section/filter-section.component';
 import LoadMoreSection from '../../components/load-more-section/load-more-section.component';
 import PokemonCard from '../../components/pokemon-card/pokemon-card.component';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectPokemons } from '../../store/pokemon/pokemon.selector';
-import { selectApp } from '../../store/app/app.selector';
-import { incrementPage, setOrderBy } from '../../store/app/app.action';
-import { getPokemonData } from '../../services/pokemon.services';
-import { setPokemon } from '../../store/pokemon/pokemon.action';
 import SearchSection from '../../components/search-section/search-section.component';
-import { useSearchParams } from 'react-router-dom';
+import { getPokemonData } from '../../services/pokemon.services';
+import { incrementPage, setOrderBy } from '../../store/app/app.action';
+import { selectApp } from '../../store/app/app.selector';
+import { setPokemon } from '../../store/pokemon/pokemon.action';
+import { selectPokemons } from '../../store/pokemon/pokemon.selector';
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -25,12 +25,6 @@ const Home = () => {
     }, [dispatch, searchParams]);
 
     useEffect(() => {
-        console.log({
-            page,
-            query,
-            orderBy,
-            limit,
-        });
         async function getPokemons() {
             const pokemonData = await getPokemonData({
                 page,
