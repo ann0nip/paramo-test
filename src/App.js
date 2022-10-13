@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import Layout from './components/layout/layout.component';
 import Home from './routes/home/home.component';
+import PokemonDetails from './routes/pokemon-details/pokemon-details.component';
 import { getPokemonData } from './services/pokemon.services';
 import { setPokemon, setPokemonCount } from './store/pokemon/pokemon.action';
 import { setTrainers } from './store/trainers/trainer.action';
@@ -28,9 +29,7 @@ function App() {
         <Routes>
             <Route path="/" element={<Layout />}>
                 <Route index element={<Home />} />
-                {/* <Route path="shop/*" element={<Shop />} />
-                <Route path="auth" element={<Authentication />} />
-                <Route path="checkout" element={<Checkout />} /> */}
+                <Route path="details/:pokemonId" element={<PokemonDetails />} />
             </Route>
         </Routes>
     );

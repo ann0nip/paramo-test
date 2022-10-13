@@ -11,13 +11,12 @@ export const getPokemonData = async ({
     orderBy = DEFAULT_ORDERBY,
     page = DEFAULT_PAGE,
     query = DEFAULT_QUERY,
-    URL = DEFAULT_URL,
 } = {}) => {
     const httpClient = new HttpClient();
     try {
         let filteredResults;
 
-        const { data } = await httpClient.get(`${URL}?limit=${limit}`);
+        const { data } = await httpClient.get(`${DEFAULT_URL}?limit=${limit}`);
 
         if (query) {
             filteredResults = data.results.filter((p) =>
@@ -63,6 +62,25 @@ export const getPokemonData = async ({
         return {
             ...data,
             results: pokemons,
+        };
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const getPokemonDetails = async (pokemonId) => {
+    const httpClient = new HttpClient();
+    try {
+        const { data } = await httpClient.get(`${DEFAULT_URL}${pokemonId}`);
+
+        return {
+            id: data.id,
+            name: data.name,
+            image: data.sprites.other['official-artwork'].front_default,
+            types: data.types,
+            weight: data.weight,
+            height: data.height,
+            abilities: data.abilities,
         };
     } catch (error) {
         console.log(error);

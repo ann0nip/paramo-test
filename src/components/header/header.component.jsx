@@ -17,13 +17,14 @@ const Header = () => {
     return (
         <AppBar position="static">
             <Container maxWidth="xl">
-                <Toolbar sx={tool_bar_styles} disableGutters>
+                <Toolbar sx={tool_bar_styles}>
                     <Typography
                         variant="h4"
                         noWrap
                         component="a"
                         href="/"
                         sx={title_styles}
+                        gutterBottom
                     >
                         POKEDEX
                     </Typography>

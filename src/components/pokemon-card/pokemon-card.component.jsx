@@ -9,8 +9,9 @@ import {
     styled,
     Typography,
 } from '@mui/material';
+import { Link } from 'react-router-dom';
 
-const TypeChip = styled(Chip)(({ label }) => {
+export const TypeChip = styled(Chip)(({ label }) => {
     switch (label) {
         case 'normal': {
             return {
@@ -122,7 +123,7 @@ const TypeChip = styled(Chip)(({ label }) => {
 
         default: {
             return {
-                backgroundColor: '#6AA596',
+                backgroundColor: '#1b1719',
             };
         }
     }
@@ -131,65 +132,71 @@ const TypeChip = styled(Chip)(({ label }) => {
 export default function PokemonCard({ pokemon }) {
     const { id, name, image, types } = pokemon;
     return (
-        <Card sx={{ maxWidth: 345 }}>
-            <CardActionArea>
-                <Typography
-                    variant="h6"
-                    sx={{
-                        position: 'absolute',
-                        margin: '8px',
-                        paddingX: '2px',
-                        right: '0',
-                        backgroundColor: 'secondary.dark',
-                        color: '#FFF',
-                        borderRadius: '5px',
-                    }}
-                >
-                    {`#${id}`}
-                </Typography>
-                {image && (
-                    <CardMedia
-                        sx={{ objectFit: 'contain' }}
-                        component="img"
-                        height="240"
-                        image={image}
-                        alt={name}
-                    />
-                )}
-                {!image && (
-                    <ImageNotSupportedIcon
-                        fontSize="large"
-                        sx={{ height: 240, display: 'flex', margin: '0 auto' }}
-                    />
-                )}
-                <CardContent>
+        <Link to={`/details/${id}`} style={{ textDecoration: 'none' }}>
+            <Card sx={{ maxWidth: 345 }}>
+                <CardActionArea>
                     <Typography
-                        sx={{ textTransform: 'capitalize' }}
-                        noWrap
-                        variant="h5"
-                        component="div"
-                    >
-                        {name}
-                    </Typography>
-                    <Typography
-                        variant="body2"
-                        color="text.secondary"
-                    ></Typography>
-                </CardContent>
-            </CardActionArea>
-            <CardActions>
-                {types.map(({ slot, type }) => (
-                    <TypeChip
-                        key={slot}
+                        variant="h6"
                         sx={{
-                            textTransform: 'uppercase',
-                            fontWeight: 'bold',
+                            position: 'absolute',
+                            margin: '8px',
+                            paddingX: '2px',
+                            right: '0',
+                            backgroundColor: 'secondary.dark',
                             color: '#FFF',
+                            borderRadius: '5px',
                         }}
-                        label={type.name}
-                    />
-                ))}
-            </CardActions>
-        </Card>
+                    >
+                        {`#${id}`}
+                    </Typography>
+                    {image && (
+                        <CardMedia
+                            sx={{ objectFit: 'contain' }}
+                            component="img"
+                            height="240"
+                            image={image}
+                            alt={name}
+                        />
+                    )}
+                    {!image && (
+                        <ImageNotSupportedIcon
+                            fontSize="large"
+                            sx={{
+                                height: 240,
+                                display: 'flex',
+                                margin: '0 auto',
+                            }}
+                        />
+                    )}
+                    <CardContent>
+                        <Typography
+                            sx={{ textTransform: 'capitalize' }}
+                            noWrap
+                            variant="h5"
+                            component="div"
+                        >
+                            {name}
+                        </Typography>
+                        <Typography
+                            variant="body2"
+                            color="text.secondary"
+                        ></Typography>
+                    </CardContent>
+                </CardActionArea>
+                <CardActions>
+                    {types.map(({ slot, type }) => (
+                        <TypeChip
+                            key={slot}
+                            sx={{
+                                textTransform: 'uppercase',
+                                fontWeight: 'bold',
+                                color: '#FFF',
+                            }}
+                            label={type.name}
+                        />
+                    ))}
+                </CardActions>
+            </Card>
+        </Link>
     );
 }

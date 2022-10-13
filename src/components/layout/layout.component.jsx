@@ -9,7 +9,7 @@ const Layout = () => {
             <CssBaseline />
             <Container
                 maxWidth="xl"
-                sx={{ backgroundColor: 'background.default' }}
+                sx={{ backgroundColor: 'background.default', height: '100vh' }}
             >
                 <Header />
                 <Outlet />
