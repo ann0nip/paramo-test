@@ -2,36 +2,47 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Button, CardMedia, Container, Grid, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { TypeChip } from '../../components/pokemon-card/pokemon-card.component';
 import { getPokemonDetails as getPokemonDetailsService } from '../../services/pokemon.services';
+import { selectTrainers } from '../../store/trainers/trainer.selector';
 
 const PokemonDetails = () => {
     const navigate = useNavigate();
     const params = useParams();
+    const { trainers } = useSelector(selectTrainers);
     const [pokemon, setPokemon] = useState(null);
+    const [trainersPerPokemon, setTrainersPerPokemon] = useState([]);
 
     useEffect(() => {
         async function getPokemonDetails() {
             const pokemonDetails = await getPokemonDetailsService(
                 params.pokemonId
             );
-
-            console.log(pokemonDetails);
             setPokemon(pokemonDetails);
         }
+        function getListOfTrainers() {
+            const pokemonId = Number(params.pokemonId);
+
+            const listOfTrainers = trainers.filter((trainer) =>
+                trainer.box.includes(pokemonId)
+            );
+            setTrainersPerPokemon(listOfTrainers);
+        }
+
         if (params.pokemonId) {
             getPokemonDetails();
         }
-    }, [params]);
+        if (trainers) {
+            getListOfTrainers();
+        }
+    }, [params, trainers]);
 
     const handleBackButton = () => navigate(-1);
 
     return (
-        <Container
-            maxWidth="xl"
-            sx={{ backgroundColor: 'primary.light', height: '100%' }}
-        >
+        <Container maxWidth="xl" sx={{ backgroundColor: 'primary.light' }}>
             <Grid container spacing={2}>
                 <Grid item xs={12}>
                     <Button
@@ -137,6 +148,41 @@ const PokemonDetails = () => {
                                     />
                                 ))}
                             </Grid>
+                        </Grid>
+                    </Grid>
+                    <Grid container sx={{}}>
+                        <Grid
+                            item
+                            xs={12}
+                            sx={{
+                                display: 'flex',
+                                justifyContent: 'center',
+                            }}
+                        >
+                            <Typography variant="h5" color={'whitesmoke'}>
+                                {`Trainers`}
+                            </Typography>
+                        </Grid>
+                        <Grid
+                            item
+                            xs={12}
+                            sx={{
+                                display: 'flex',
+                                flexWrap: 'wrap',
+                                justifyContent: 'center',
+                                margin: '15px',
+                            }}
+                        >
+                            {trainersPerPokemon.map((trainer) => (
+                                <Typography
+                                    key={trainer.name}
+                                    variant="h6"
+                                    display={'inline-block'}
+                                    color={'whitesmoke'}
+                                >
+                                    {`🔹${trainer.name}🔹`}
+                                </Typography>
+                            ))}
                         </Grid>
                     </Grid>
                 </section>
