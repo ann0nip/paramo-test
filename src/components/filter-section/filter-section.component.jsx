@@ -5,11 +5,12 @@ import {
     AccordionSummary,
     Button,
     Grid,
+    styled,
     Typography,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-const filtersOptions = [
+export const SortOptions = [
     {
         id: 0,
         label: 'Lowest Number',
@@ -32,11 +33,25 @@ const filtersOptions = [
     },
 ];
 
+export const SortButton = styled(Button)(({ orderby, sortvalue }) => {
+    return {
+        boxShadow: 'none',
+        color: orderby === sortvalue ? '#FFF' : '#E3350D',
+        border: '1px solid #E3350D',
+        backgroundColor: orderby === sortvalue ? '#E3350D' : '#FFF',
+        '&:hover': {
+            color: '#FFF',
+            backgroundColor: '#E3350D',
+            boxShadow: 'none',
+        },
+    };
+});
+
 export default function FilterSection({ orderBy = 'numAsc' }) {
     const navigate = useNavigate();
 
     const handleActiveButton = (id) => {
-        navigate(`/?orderBy=${filtersOptions[id].value}`);
+        navigate(`/?orderBy=${SortOptions[id].value}`);
     };
 
     return (
@@ -47,13 +62,13 @@ export default function FilterSection({ orderBy = 'numAsc' }) {
                     aria-controls="filters-options-content"
                     id="filters-options-header"
                 >
-                    <Typography>Filters</Typography>
+                    <Typography>Sort Pokemon by:</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                     <Grid container spacing={2}>
-                        {filtersOptions.map((filter) => (
+                        {SortOptions.map((sort) => (
                             <Grid
-                                key={filter.id}
+                                key={sort.id}
                                 item
                                 xs={6}
                                 md={3}
@@ -62,31 +77,15 @@ export default function FilterSection({ orderBy = 'numAsc' }) {
                                     justifyContent: 'center',
                                 }}
                             >
-                                <Button
-                                    onClick={() =>
-                                        handleActiveButton(filter.id)
-                                    }
+                                <SortButton
+                                    data-testid="sort-button"
+                                    onClick={() => handleActiveButton(sort.id)}
                                     variant="contained"
-                                    sx={{
-                                        boxShadow: 'none',
-                                        color:
-                                            orderBy === filter.value
-                                                ? '#FFF'
-                                                : '#E3350D',
-                                        border: '1px solid #E3350D',
-                                        backgroundColor:
-                                            orderBy === filter.value
-                                                ? '#E3350D'
-                                                : '#FFF',
-                                        '&:hover': {
-                                            color: '#FFF',
-                                            backgroundColor: '#E3350D',
-                                            boxShadow: 'none',
-                                        },
-                                    }}
+                                    orderby={orderBy}
+                                    sortvalue={sort.value}
                                 >
-                                    {filter.label}
-                                </Button>
+                                    {sort.label}
+                                </SortButton>
                             </Grid>
                         ))}
                     </Grid>

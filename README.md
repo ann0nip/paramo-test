@@ -37,3 +37,7 @@ Then open [http://localhost:3000](http://localhost:3000) to view it in the brows
 `I didn't have time to finish the detail page correctly and apply Unit tests. I will leave here a link to another project that I recently worked which has unit tests.`
 
 https://github.com/ann0nip/lightit-test
+
+## Link current challenge:
+
+https://github.com/Paramo-Tech/Frontend.TechChallenge

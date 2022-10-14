@@ -1,5 +1,5 @@
 import { HttpClient } from '../utils/http-client.utils';
-const DEFAULT_URL = 'https://pokeapi.co/api/v2/pokemon/';
+const DEFAULT_URL = process.env.REACT_APP_API_URL;
 const DEFAULT_PAGE = 1;
 const DEFAULT_ORDERBY = 'numAsc';
 const DEFAULT_QUERY = '';

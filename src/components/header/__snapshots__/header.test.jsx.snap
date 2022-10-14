@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header Component should take a snapshot 1`] = `
+<DocumentFragment>
+  <header
+    class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionStatic css-hip9hq-MuiPaper-root-MuiAppBar-root"
+  >
+    <div
+      class="MuiContainer-root MuiContainer-maxWidthXl css-19r6kue-MuiContainer-root"
+    >
+      <div
+        class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-regular css-15dd1oo-MuiToolbar-root"
+      >
+        <a
+          class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom MuiTypography-noWrap css-a7ux5u-MuiTypography-root"
+          href="/"
+        >
+          POKEDEX
+        </a>
+      </div>
+    </div>
+  </header>
+</DocumentFragment>
+`;

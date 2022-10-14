@@ -21,7 +21,7 @@ const Home = () => {
 
     useEffect(() => {
         const orderBy = searchParams.get('orderBy');
-        dispatch(setOrderBy(orderBy));
+        orderBy && dispatch(setOrderBy(orderBy));
     }, [dispatch, searchParams]);
 
     useEffect(() => {
